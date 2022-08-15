@@ -4,6 +4,7 @@ import App from './App'
 import { pokemonsReducer } from './Reducers/pokemons'
 import { logger } from './middlewares'
 import { Provider } from 'react-redux'
+import thunk from 'redux-thunk'
 import {
   legacy_createStore as createStore,
   compose,
@@ -11,10 +12,9 @@ import {
 } from 'redux'
 import './index.css'
 
-const composedEnhancer = compose(
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-  applyMiddleware(logger)
-)
+const composeAlt = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+
+const composedEnhancer = composeAlt(applyMiddleware(thunk, logger))
 
 const store = createStore(pokemonsReducer, composedEnhancer)
 
