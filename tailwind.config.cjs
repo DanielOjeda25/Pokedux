@@ -8,6 +8,9 @@ module.exports = {
         xsm: '320px',
         xmd: '425px',
       },
+      fontFamily: {
+        Acme: ['Acme', 'sans-serif'],
+      },
     },
   },
   plugins: [],
