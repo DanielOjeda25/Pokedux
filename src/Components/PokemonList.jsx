@@ -1,11 +1,12 @@
 import React from 'react'
 import PokeCard from './PokeCard'
+import { PokemonList as Pl } from '../styles'
 
 const PokemonList = ({ pokemons }) => {
   return (
-    <div className='grid gap-1 grid-cols-2 sm:grid-cols-4 mx-1'>
+    <div className={`${Pl.div}`}>
       {pokemons.map((i) => {
-        return <PokeCard />
+        return <PokeCard name={i.name} key={i.name} />
       })}
     </div>
   )
