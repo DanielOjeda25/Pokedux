@@ -2,30 +2,32 @@ import { useEffect } from 'react'
 import './App.css'
 import { useSelector, useDispatch } from 'react-redux'
 
-import {getPokemons, getPokemonsDetail} from './Api/getPokemons'
-import { setPokemons } from './Actions'
+import { getPokemons } from './Api/getPokemons'
+import { getPokemonsWithDetails, setLoading } from './Actions'
 import PokemonList from './Components/PokemonList'
 import Searcher from './Components/Searcher'
 import DarkButton from './Components/DarkButton'
+import Spinner from './Components/Spinner'
 function App() {
   const pokemons = useSelector((state) => state.pokemons)
+  const loading = useSelector((state) => state.loading)
   const dispatch = useDispatch()
 
   useEffect(() => {
     const FetchPokemons = async () => {
+      dispatch(setLoading(true))
       const pokemonsList = await getPokemons()
-      const pokemonsDetails = await Promise.all(pokemonsList.map(pokemon => 
-        getPokemonsDetail(pokemon)))
-        dispatch(setPokemons(pokemonsDetails))
+      dispatch(getPokemonsWithDetails(pokemonsList))
+      dispatch(setLoading(false))
     }
     FetchPokemons()
-  })
+  }, [])
 
   return (
     <div className='dark:bg-gray-800 font-Acme font-normal tracking-widest'>
       <DarkButton />
       <Searcher />
-      <PokemonList pokemons={pokemons} />
+      {loading ? <Spinner /> : <PokemonList pokemons={pokemons} />}
     </div>
   )
 }
