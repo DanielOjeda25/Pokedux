@@ -1,25 +1,28 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
-
-const PokeCard = () => {
+import { PokeCard as Pk } from '../styles'
+const PokeCard = ({ name }) => {
   return (
-    <div className='flex justify-center'>
-      <div className='block rounded-xl shadow-lg bg-white max-w-sm w-full text-center relative '>
-        <div className='flex absolute top-2 right-2 items-center pl-3 pointer-events-none flex-none'>
-          <FontAwesomeIcon icon={faStar} className='h-4' />
-        </div>
-        <div className='py-3 px-6 border-b border-gray-300'>
-          <h2>Dito</h2>
-        </div>
-
-        <div className='p-6'>
-          <img
-            src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png'
-            className='w-full'
+    <div className={`${Pk.div1}`}>
+      <div className={`${Pk.div2}`}>
+        <div className={`${Pk.div3}`}>
+          <FontAwesomeIcon
+            icon={faStar}
+            className={`${Pk.FontIcon}`}	
           />
         </div>
-        <div className='py-3 px-6 border-t border-gray-300 text-gray-600'>
+        <div className={`${Pk.div4}`}>
+          <h2>{name}</h2>
+        </div>
+
+        <div className={`${Pk.div5}`}>
+          <img
+            src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png'
+            className={`${Pk.img}`}
+          />
+        </div>
+        <div className={`${Pk.div6}`}>
           <p>Type: Magic</p>
         </div>
       </div>
