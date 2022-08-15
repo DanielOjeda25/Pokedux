@@ -1,10 +1,18 @@
 import axios from 'axios'
 
-const getPokemons = () => {
+//aqui hacemos el fetch a la api
+export const getPokemons = () => {
   return axios
     .get('https://pokeapi.co/api/v2/pokemon?limit=151')
     .then((res) => res.data.results)
     .catch((err) => console.error(err))
 }
 
-export default getPokemons
+export const getPokemonsDetail = (pokemon) => {
+  return axios
+    .get(pokemon.url)
+    .then((res) => res.data)
+    .catch((err) => console.error(err))
+}
+
+
