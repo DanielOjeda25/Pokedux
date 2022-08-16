@@ -1,16 +1,18 @@
 import { useEffect } from 'react'
 import './App.css'
-import { useSelector, useDispatch } from 'react-redux'
-
+import { useSelector, useDispatch, shallowEqual } from 'react-redux'
 import { getPokemons } from './Api/getPokemons'
 import { getPokemonsWithDetails, setLoading } from './Actions'
 import PokemonList from './Components/PokemonList'
 import Searcher from './Components/Searcher'
 import DarkButton from './Components/DarkButton'
 import Spinner from './Components/Spinner'
+
 function App() {
-  const pokemons = useSelector((state) => state.pokemons)
-  const loading = useSelector((state) => state.loading)
+  const pokemons = useSelector((state) =>
+    state.getIn(['data', 'pokemons'], shallowEqual)
+  ).toJS()
+  const loading = useSelector((state) => state.getIn(['ui', 'loading']))
   const dispatch = useDispatch()
 
   useEffect(() => {
