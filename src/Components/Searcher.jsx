@@ -1,8 +1,15 @@
 import logo from '../assets/pokeLogosvg.svg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
+import { useDispatch } from 'react-redux'
+import { setFilter } from '../features/dataSlices'
 
 const Searcher = () => {
+  const dispatch = useDispatch()
+
+  const handleOnChange = (e) => {
+    dispatch(setFilter(e.target.value))
+  }
   return (
     <header className='flex justify-center items-center h-24 w-full flex-col'>
       <div className='aspect-w-16 aspect-h-9 flex justify-center items-center mt-8 mb-3'>
@@ -16,15 +23,12 @@ const Searcher = () => {
           />
         </div>
         <input
+          onChange={handleOnChange}
           type='search'
           placeholder='Search pokemons'
           className='block p-4 pl-10 w-full text-sm text-gray-900 bg-slate-100 rounded-lg border border-gray-300 focus:ring-gray-400 focus:border-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
         />
-        <button
-          type='submit'
-          className='text-white absolute right-2.5 bottom-2.5 bg-violet-500 hover:bg-violet-600  focus:ring-4 focus:outline-none focus:bg-violet-700 font-medium rounded-lg text-sm px-4 py-2 dark:bg-violet-500 dark:hover:bg-violet-600  dark:focus:bg-violet-700 '>
-          Search
-        </button>
+       
       </div>
     </header>
   )
