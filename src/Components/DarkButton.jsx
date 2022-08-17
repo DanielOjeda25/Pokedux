@@ -3,16 +3,10 @@ import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons'
 import { useState, useEffect } from 'react'
 
 const DarkButton = () => {
+
   const [theme, setTheme] = useState(null)
 
-  useEffect(() => {
-    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      setTheme('dark')
-    } else {
-      setTheme('light')
-    }
-  }, [])
-
+ 
   useEffect(() => {
     if (theme === 'dark') {
       document.documentElement.classList.add('dark')
