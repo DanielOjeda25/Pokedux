@@ -3,7 +3,7 @@ import PokeCard from './PokeCard'
 
 const PokemonList = ({ pokemons }) => {
   return (
-    <div className='grid gap-2 grid-cols-2 sm:grid-cols-4 xsm:my-20'>
+    <div className='h-full grid gap-3 grid-cols-1 sm:grid-cols-4 xsm:mt-10 xsm:mb-0 '>
       {pokemons.map((i) => {
         return <PokeCard name={i.name} key={i.name} image={i.sprites.front_default} types={i.types} id={i.id} favorite={i.favorite}/>
       })}
